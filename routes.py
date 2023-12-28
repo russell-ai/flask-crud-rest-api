@@ -81,8 +81,12 @@ def to_dict(self):
 
 # to_dict metodunu Product modeline method olarak ekliyorum.
 Product.to_dict = to_dict
-Supplier.to_dict = to_dict
 
 
+def supplier_to_dict(self):
+    return {
+        'id': self.id,
+        'name': self.name
+    }
 
-
+Supplier.to_dict = supplier_to_dict
