@@ -63,6 +63,12 @@ def add_supplier():
     db.session.commit()
     return jsonify({'id': new_supplier.id, 'name': new_supplier.name}), 201 # 201: Created
 
+# GET: Tüm tedarikçileri listeleme
+@app.route('/suppliers', methods=['GET'])
+def get_suppliers():
+    suppliers = Supplier.query.all()
+    supplier_list = [supplier.to_dict() for supplier in suppliers]
+    return jsonify(supplier_list), 200
 
 # Model için instance metodu
 def to_dict(self):
@@ -75,6 +81,7 @@ def to_dict(self):
 
 # to_dict metodunu Product modeline method olarak ekliyorum.
 Product.to_dict = to_dict
+Supplier.to_dict = to_dict
 
 
 
